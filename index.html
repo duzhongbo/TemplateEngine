@@ -24,7 +24,7 @@ var TemplateEngine = function(tpl, data) {
 	add(tpl.substr(cursor, tpl.length - cursor));
 	code += 'return r.join("");'; // <-- return the result
 	console.log(code);
-	return tpl;
+	return new Function(code.replace(/[\r\t\n]/g, '')).apply(data);
 }
 var template = '<p>Hello, my name is <%this.name%>. I\'m <%this.profile.age%> years old.</p>';
 console.log(TemplateEngine(template, {

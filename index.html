@@ -8,7 +8,11 @@
 	
 <script type="text/javascript">
 var TemplateEngine = function(tpl, data) {
-    // magic here ...
+    var re = /<%([^%>]+)?%>/g;
+    var match;
+	while(match = re.exec(tpl)) {
+	    console.log(match);
+	}
 }
 var template = '<p>Hello, my name is <%name%>. I\'m <%age%> years old.</%age%></%name%></p>';
 console.log(TemplateEngine(template, {

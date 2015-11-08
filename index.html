@@ -5,7 +5,18 @@
 <title>html5</title>
 </head>
 <body>
-	
+
+<script type="text/tpl" id="template">
+My skills: 
+<%if(this.showSkills) {%>
+    <%for(var index in this.skills) {%>
+    <a href="#"><%this.skills[index]%></a>
+    <%}%>
+<%} else {%>
+    <p>none</p>
+<%}%>; 
+</script>
+
 <script type="text/javascript">
 var TemplateEngine = function(html, options) {
     var re = /<%([^%>]+)?%>/g, reExp = /(^( )?(if|for|else|switch|case|break|{|}))(.*)?/g, code = 'var r=[];\n', cursor = 0;
@@ -22,16 +33,10 @@ var TemplateEngine = function(html, options) {
     code += 'return r.join("");';
     return new Function(code.replace(/[\r\t\n]/g, '')).apply(options);
 }
-var template = 
-'My skills:' + 
-'<%if(this.showSkills) {%>' +
-    '<%for(var index in this.skills) {%>' + 
-    '<a href="#"><%this.skills[index]%></a>' +
-    '<%}%>' +
-'<%} else {%>' +
-    '<p>none</p>' +
-'<%}%>';
-console.log(TemplateEngine(template, {
+function removeSpace(str){
+    str=str.replace(/\s/g,'');
+}
+console.log(TemplateEngine(template.innerHTML, {
     skills: ["js", "html", "css"],
     showSkills: true
 }));

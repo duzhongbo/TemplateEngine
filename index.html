@@ -15,7 +15,7 @@ var TemplateEngine = function(tpl, data) {
     }
     return tpl;
 }
-var template = '<p>Hello, my name is <%name%>. I\'m <%age%> years old.</p>';
+var template = '<p>Hello, my name is <%this.name%>. I\'m <%this.profile.age%> years old.</p>';
 console.log(TemplateEngine(template, {
     name: "Krasimir",
     profile: { age: 29 }

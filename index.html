@@ -26,10 +26,13 @@ var TemplateEngine = function(tpl, data) {
     console.log(code);
     return new Function(code.replace(/[\r\t\n]/g, '')).apply(data);
 }
-var template = '<p>Hello, my name is <%this.name%>. I\'m <%this.profile.age%> years old.</p>';
+var template = 
+'My skills:' + 
+'<%for(var index in this.skills) {%>' + 
+'<a href="#"><%this.skills[index]%></a>' +
+'<%}%>';
 console.log(TemplateEngine(template, {
-    name: "Krasimir",
-    profile: { age: 29 }
+    skills: ["js", "html", "css"]
 }));
 
 

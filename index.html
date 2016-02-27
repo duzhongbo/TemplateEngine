@@ -8,7 +8,7 @@
 
 <script type="text/javascript">
 var TemplateEngine = function(html, options) {
-    var re = /<%([^%>]+)?%>/g, reExp = /(^( )?(if|for|else|switch|case|break|{|}))(.*)?/g, code = 'var r=[];\n', cursor = 0;
+    var re = /<%([^%>]+)%>/g, reExp = /(^( )?(if|for|else|switch|case|break|{|}))(.*)?/g, code = 'var r=[];\n', cursor = 0;
     //执行一次后返回自己,继续执行
     var add = function(line, js) {
         js? (code += line.match(reExp) ? line + '\n' : 'r.push(' + line + ');\n') :
@@ -18,7 +18,8 @@ var TemplateEngine = function(html, options) {
     while(match = re.exec(html)) {//exec执行一次，返回匹配的第一个字符串末尾字符的位置
         /*
         match.index返回第一个匹配的开始位置
-
+        match[1]是匹配结果
+        html.slice(cursor, match.index)是匹配结果前的常量串,常量串不是js所以第二个参数可以为空
 
         */
         add(html.slice(cursor, match.index))(match[1], true);

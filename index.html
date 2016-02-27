@@ -16,11 +16,11 @@ var TemplateEngine = function(html, options) {
         return add;
     }
     while(match = re.exec(html)) {//exec执行一次，返回匹配的第一个字符串末尾字符的位置
-/*
-match.index返回第一个匹配的开始位置
+        /*
+        match.index返回第一个匹配的开始位置
 
 
-*/
+        */
         add(html.slice(cursor, match.index))(match[1], true);
         cursor = match.index + match[0].length;
     }
